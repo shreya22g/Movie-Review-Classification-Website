@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<div class="container mb-3 py-4">
+    <form method="post" action="/review">
+    {% csrf_token %}
+        <div class="mb-3">
+        <label for="username" class="form-label">User Name</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="User Name">
+        </div>
+
+        <div class="mb-3">
+        <label for="name" class="form-label">Enter Movie Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name">
+        </div>
+
+        <div class="mb-3">
+        <label for="desc" class="form-label">Enter Your Review</label>
+        <textarea class="form-control" id="desc" name="desc" rows="3" placeholder="Enter Text"></textarea>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+
+<center>
+<div class="center">
+<span class="border-start-0">Average Rating of entered movie: {{ num }}</span>
+</div>
+</center>
+ 
+
+{{form}}
+{% endblock body %}
